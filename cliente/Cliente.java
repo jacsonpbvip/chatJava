@@ -19,6 +19,13 @@ public class Cliente {
 
             System.out.println("Digite seu apelido:");
             String apelido = in.readLine();
+
+            // Verifica se o apelido é vazio
+            if (apelido.trim().isEmpty()) {
+                System.out.println("Apelido não pode ser vazio. Encerrando.");
+                return;
+            }
+
             out.println(apelido);
 
             Thread threadReceberMensagens = new Thread(new RecebedorMensagens(socket));

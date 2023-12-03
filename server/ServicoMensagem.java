@@ -1,10 +1,13 @@
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ServicoMensagem implements Runnable {
     private String apelido;
     private String mensagem;
     private Participante destinatario;
+    private static final Logger logger = Logger.getLogger(ServicoMensagem.class.getName());
 
     public ServicoMensagem(String apelido, String mensagem, Participante destinatario) {
         this.apelido = apelido;
@@ -15,9 +18,9 @@ public class ServicoMensagem implements Runnable {
     @Override
     public void run() {
         if (apelido != null && mensagem != null) {
-            System.out.println(apelido + " : " + mensagem);
+            logger.log(Level.FINE, "{0} : {1}", new Object[] { apelido, mensagem });
         } else {
-            System.err.println("Erro: apelido ou mensagem é nulo");
+            logger.log(Level.SEVERE, "Erro: apelido ou mensagem é nulo");
         }
     }
 
@@ -31,5 +34,4 @@ public class ServicoMensagem implements Runnable {
     public String getApelido() {
         return null;
     }
-
 }
